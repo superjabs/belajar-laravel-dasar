@@ -6,7 +6,7 @@ return [
         'last_name' => 'fian',
     ],
     'email' => 'gusjabungaf@gmail.com',
-    'web' => 'alfiansy.dev'
+    'web' => 'alfianvx.dev'
 ];
 
 ?>
