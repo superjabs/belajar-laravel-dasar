@@ -27,3 +27,16 @@ Route::redirect("/web", "/profile");
 Route::fallback(function(){
     return "page not found";
 });
+
+// instant way
+Route::view('/hello', 'hello', ['nama' => 'alfian']);
+
+// manual
+Route::get('/hello-again', function(){
+    return view('hello-again', ['nama' => 'alfian']);
+});
+
+// nested views
+Route::get('/hello-world', function(){
+    return view('hello.world', ['time' => 'morning']);
+});
