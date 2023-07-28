@@ -24,5 +24,4 @@ class HelloControllerTest extends TestCase
         ->assertSeeText('plain/text');
     }
 
-
 }
