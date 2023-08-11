@@ -1,5 +1,5 @@
 <html>
     <body>
-        <p>Hello {{$nama}}</p>
+        <p>Hello {{$name}}</p>
     </body>
 </html>
