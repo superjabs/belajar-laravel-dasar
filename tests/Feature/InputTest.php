@@ -31,7 +31,7 @@ class InputTest extends TestCase
 
     // public function testHelloInput()
     // {
-    //     $this->post('input/hello/input', [
+    //     $this->post('/input/hello/input', [
     //         'name' =>
     //         [
     //             'first' => 'al',
@@ -43,7 +43,7 @@ class InputTest extends TestCase
 
     // public function testArrayInput()
     // {
-    //     $this->post('input/hello/array', [
+    //     $this->post('/input/hello/array', [
     //         'products' => [
     //             [
     //                 'name' => 'keyboard',
@@ -57,10 +57,50 @@ class InputTest extends TestCase
     //     ])->assertSeeText('keyboard')->assertSeeText('mouse');
     // }
 
-    public function testInputQuery(){
-        $this->post('input/hello/query', [
-            'name' => 'alfian'
-        ])->assertSeeText('alfian');
+    // public function testInputQuery(){
+    //     $this->post('/input/query', [
+    //         'name' => 'alfian'
+    //     ])->assertSeeText('alfian');
+    // }
+
+    // public function testInputType(){
+    //     $this->post('/input/type', [
+    //         'name' => 'alfian',
+    //         'married' => 'false',
+    //         'birth_date' => '2001-07-01'
+    //     ])->assertSeeText('alfian')->assertSeeText('false')->assertSeeText('2001-07-01');
+    // }
+
+    public function testFilterOnly()
+    {
+        $this->post('/input/type/only', [
+            'name' => [
+                'first' => 'al',
+                'last' => 'fian',
+                'role'  => 'president'
+            ]
+        ])->assertSeeText('al')->assertSeeText('fian')
+        ->assertDontSeeText('president');
+    }
+
+    public function testFilterExcept()
+    {
+        $this->post('/input/type/except', [
+            'name' => 'alfian',
+            'password' => 'rahasia',
+            'admin' => 'true'
+        ])->assertSeeText('alfian')->assertSeeText('rahasia')
+        ->assertDontSeeText('admin');
+    }
+
+    public function testFilterMerge()
+    {
+        $this->post('/input/type/merge', [
+            'name' => 'alfian',
+            'password' => 'rahasia',
+            'admin' => 'true'
+        ])->assertSeeText('alfian')->assertSeeText('rahasia')
+        ->assertSeeText('false');
     }
 
 }
